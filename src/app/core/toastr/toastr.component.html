@@ -1,0 +1,24 @@
+<div class="toast-container">
+  <div
+    *ngFor="let toast of toasts; index as i"
+    [ngClass]="{ 'toast-timed': toast.autoDismiss }"
+    [ngStyle]="{
+      '--index': toasts?.length! - 1 - i,
+      '--timer-duration': toast.autoDismiss ? toast.duration + 'ms' : null
+    }"
+    class="toast-item alert alert-bg-{{ toast.type }} box-shadow"
+    role="alert"
+    @fadeUp
+  >
+    <div class="toast-item__message">{{ toast.message }}</div>
+
+    <button
+      class="toast-item__close"
+      type="button"
+      aria-label="Close"
+      (click)="remove(toast)"
+    >
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+</div>
