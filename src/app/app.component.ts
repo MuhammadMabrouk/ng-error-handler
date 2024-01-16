@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from './core/toastr/toastr.service';
 import { Toast } from './core/toastr/toastr.interface';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,15 +12,10 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   toasts$: Observable<Toast[]>;
 
-  products: any[] = [];
-
   constructor(private toastr: ToastrService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.toasts$ = this.toastr.toasts$;
-
-    // fetch all products
-    this.getProducts();
   }
 
   addToast(type?: Toast['type']): void {
@@ -29,34 +24,6 @@ export class AppComponent implements OnInit {
       ...(type && { type }),
       // autoDismiss: false,
     });
-  }
-
-  // fetch all products
-  getProducts() {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('limit', 10);
-
-    this.http
-      .get('https://dummyjson.com/products', { params: queryParams })
-      .subscribe({
-        next: (res: any) => (this.products = res.products),
-        error: console.log,
-      });
-  }
-
-  // delete product
-  deleteProduct(id: string) {
-    this.http.delete(`https://dummyjson.com/products/${id}`)
-      .subscribe({
-        next: () => {
-          this.products = this.products.filter((product) => product.id !== id);
-          this.toastr.add({
-            type: 'success',
-            message: 'Product has been deleted successfully!',
-          });
-        },
-        error: console.log,
-      });
   }
 
   // mock and test any HTTP

@@ -6,18 +6,17 @@
 <button (click)="addToast('warning')">Warning</button>
 <br><br>
 
+<strong>Error Types: </strong>
+<button (click)="mockHttp(400)">Bad Request</button> |
+<button (click)="mockHttp(401)">Unauthenticated</button> |
+<button (click)="mockHttp(403)">Unauthorized</button> |
+<button (click)="mockHttp(404)">Not Found</button> |
+<button (click)="mockHttp(500)">Server</button>
 <br><br>
-<button (click)="mockHttp(400)">Bad Request Error</button> |
-<button (click)="mockHttp(401)">Unauthenticated Error</button> |
-<button (click)="mockHttp(403)">Unauthorized Error</button> |
-<button (click)="mockHttp(404)">Not Found Error</button> |
-<button (click)="mockHttp(500)">Server Error</button>
 
+<!-- products list -->
+<app-products></app-products>
+
+<!-- toasts -->
+<br><br>
 <app-toastr [toasts]="toasts$ | async"></app-toastr>
-
-<ol>
-  <li *ngFor="let product of products">
-    <h3>{{ product?.title }}</h3>
-    <button (click)="deleteProduct(product.id)">Delete</button>
-  </li>
-</ol>

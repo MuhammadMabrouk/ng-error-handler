@@ -9,11 +9,13 @@ import { AppHttpErrorHandler } from './core/error-handler/app-http-error-handler
 
 import { AppComponent } from './app.component';
 import { ToastrComponent } from './core/toastr/toastr.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToastrComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
