@@ -35,8 +35,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.create(product).subscribe({
       next: (res: Product) => {
         this.products = [res, ...this.products];
-        this.toastr.add({
-          type: 'success',
+        this.toastr.success({
           message: 'Product has been created successfully!',
         });
       },
@@ -48,9 +47,8 @@ export class ProductsComponent implements OnInit {
   updateProduct() {
     const product: Product = { id: 1, title: 'Updated product!!' };
     this.productsService.create(product).subscribe({
-      next: (res: any) => {
-        this.toastr.add({
-          type: 'success',
+      next: (res: Product) => {
+        this.toastr.success({
           message: 'Product has been updated successfully!',
         });
       },
@@ -63,8 +61,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.delete(product).subscribe({
       next: () => {
         this.products = this.products.filter((item) => item.id !== product.id);
-        this.toastr.add({
-          type: 'success',
+        this.toastr.success({
           message: 'Product has been deleted successfully!',
         });
       },

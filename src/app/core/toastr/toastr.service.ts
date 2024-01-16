@@ -11,12 +11,12 @@ export class ToastrService {
 
   constructor() {}
 
-  add(toast: Omit<Toast, 'id'>) {
+  private createToast(type: Toast['type'], toast: Omit<Toast, 'id' | 'type'>) {
     if (!toast) return;
 
     const toastItem: Required<Toast> = {
       id: `toast-${Date.now()}`,
-      type: 'info', // default type
+      type,
       duration: 5000, // default duration in milliseconds
       autoDismiss: true, // default auto-dismiss behavior
       ...toast,
@@ -37,6 +37,22 @@ export class ToastrService {
         tap(() => this.remove(toastItem))
       )
       .subscribe();
+  }
+
+  info(toast: Omit<Toast, 'id' | 'type'>): void {
+    this.createToast('info', toast);
+  }
+
+  success(toast: Omit<Toast, 'id' | 'type'>): void {
+    this.createToast('success', toast);
+  }
+
+  warning(toast: Omit<Toast, 'id' | 'type'>): void {
+    this.createToast('warning', toast);
+  }
+
+  danger(toast: Omit<Toast, 'id' | 'type'>): void {
+    this.createToast('danger', toast);
   }
 
   remove(toast: Toast) {

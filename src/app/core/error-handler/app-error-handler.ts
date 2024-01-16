@@ -12,8 +12,7 @@ export class AppErrorHandler implements ErrorHandler {
     // show a global error notification
     if (!(error instanceof HttpErrorResponse)) {
       this.zone.run(() => {
-        this.toastr.add({
-          type: 'danger',
+        this.toastr.danger({
           message: 'An unexpected error occurred!',
         });
       });

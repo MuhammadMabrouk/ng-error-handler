@@ -18,12 +18,20 @@ export class AppComponent implements OnInit {
     this.toasts$ = this.toastr.toasts$;
   }
 
-  addToast(type?: Toast['type']): void {
-    this.toastr.add({
-      message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      ...(type && { type }),
-      // autoDismiss: false,
-    });
+  addInfoToast(): void {
+    this.toastr.info({ message: 'A simple info alert - check it out!' });
+  }
+
+  addSuccessToast(): void {
+    this.toastr.success({ message: 'A simple success alert - check it out!' });
+  }
+
+  addWarningToast(): void {
+    this.toastr.warning({ message: 'A simple warning alert - check it out!' });
+  }
+
+  addDangerToast(): void {
+    this.toastr.danger({ message: 'A simple danger alert - check it out!' });
   }
 
   // mock and test any HTTP

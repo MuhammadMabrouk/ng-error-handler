@@ -1,7 +1,7 @@
 export interface Toast {
   id: string;
+  type: 'info' | 'success' | 'warning' | 'danger';
   message: string;
-  type?: 'info' | 'success' | 'warning' | 'danger';
   duration?: number;
   autoDismiss?: boolean;
 }
