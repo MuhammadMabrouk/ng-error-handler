@@ -1,12 +1,23 @@
-<button (click)="addToast()">Add Default Toast</button>
-<br><br>
-<button (click)="addToast('info')">Add Info Toast</button>
-<br><br>
-<button (click)="addToast('success')">Add Success Toast</button>
-<br><br>
-<button (click)="addToast('danger')">Add Danger Toast</button>
-<br><br>
-<button (click)="addToast('warning')">Add Warning Toast</button>
+<strong>Toast Types: </strong>
+<button (click)="addToast()">Default</button> |
+<button (click)="addToast('info')">Info</button> |
+<button (click)="addToast('success')">Success</button> |
+<button (click)="addToast('danger')">Danger</button> |
+<button (click)="addToast('warning')">Warning</button>
 <br><br>
 
+<br><br>
+<button (click)="mockHttp(400)">Bad Request Error</button> |
+<button (click)="mockHttp(401)">Unauthenticated Error</button> |
+<button (click)="mockHttp(403)">Unauthorized Error</button> |
+<button (click)="mockHttp(404)">Not Found Error</button> |
+<button (click)="mockHttp(500)">Server Error</button>
+
 <app-toastr [toasts]="toasts$ | async"></app-toastr>
+
+<ol>
+  <li *ngFor="let product of products">
+    <h3>{{ product?.title }}</h3>
+    <button (click)="deleteProduct(product.id)">Delete</button>
+  </li>
+</ol>
